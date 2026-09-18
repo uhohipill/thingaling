@@ -1355,7 +1355,32 @@ function MetricCard({ item, packet, compact, editing, pointerSwapping, dragging,
           return <span key={key}><b>{metricMeta[key].shortLabel}</b> {detail.value}{detail.unit}</span>;
         })}
         {!details.length && <span>{unavailableMetricMessage(item.metric, packet.connected, packet.game, packet.telemetryMessage)}</span>}
-      </div>}
+          {/* G Drive Mode Tile */}
+    <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col justify-between shadow-lg">
+      <div className="flex justify-between items-center mb-2">
+        <span className="text-xs font-semibold tracking-wider text-amber-400 uppercase">G Drive Mode</span>
+        <span className="text-xs text-zinc-400">{metrics.speed?.value ?? 0} {metrics.speed?.unit ?? 'MPH'}</span>
+      </div>
+      <div className="grid grid-cols-2 gap-2 text-sm">
+        <div className="bg-zinc-800/50 p-2 rounded">
+          <div className="text-zinc-500 text-[10px]">RPM</div>
+          <div className="font-bold text-zinc-200">{metrics.rpm?.value ?? 0}</div>
+        </div>
+        <div className="bg-zinc-800/50 p-2 rounded">
+          <div className="text-zinc-500 text-[10px]">Boost</div>
+          <div className="font-bold text-zinc-200">{metrics.boost?.value ?? 0} PSI</div>
+        </div>
+        <div className="bg-zinc-800/50 p-2 rounded">
+          <div className="text-zinc-500 text-[10px]">Coolant</div>
+          <div className="font-bold text-zinc-200">{metrics.coolantTemp?.value ?? 0}°F</div>
+        </div>
+        <div className="bg-zinc-800/50 p-2 rounded">
+          <div className="text-zinc-500 text-[10px]">Fuel</div>
+          <div className="font-bold text-zinc-200">{metrics.fuelLevel?.value ?? 0}%</div>
+        </div>
+      </div>
+    </div>
+</div>}
     </article>
   );
 }
